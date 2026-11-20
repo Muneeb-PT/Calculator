@@ -132,6 +132,25 @@ backspace.addEventListener("click", function () {
     updateScreen();
 });
 
+// Choose black or white text automatically so random button colours stay readable.
+function setReadableButtonColor(button, backgroundColor) {
+    button.style.backgroundColor = backgroundColor;
+
+    const hex = backgroundColor.replace("#", "");
+    const channels = hex.length === 3
+        ? hex.split("").map((part) => parseInt(part + part, 16))
+        : [0, 2, 4].map((index) => parseInt(hex.slice(index, index + 2), 16));
+
+    const luminance = channels
+        .map((channel) => {
+            const value = channel / 255;
+            return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+        })
+        .reduce((total, value, index) => total + value * [0.2126, 0.7152, 0.0722][index], 0);
+
+    button.style.color = luminance > 0.42 ? "#111111" : "#ffffff";
+}
+
 // The original random-colour buttons stay because they are part of the fun.
 function showColor() {
     const colors = ["#f8a384", "#c8fd8b", "#bcfbfb", "#fac5fa", "#fcf7af"];
@@ -146,11 +165,13 @@ function showColorShell() {
 
     const random = (items) => items[Math.floor(Math.random() * items.length)];
     document.getElementById("body").style.backgroundColor = random(shellColors);
+
     document.querySelectorAll("#number button").forEach((button) => {
-        button.style.backgroundColor = random(keyColors);
+        setReadableButtonColor(button, random(keyColors));
     });
-    document.getElementById("c").style.backgroundColor = random(clearColors);
-    document.getElementById("eq").style.backgroundColor = random(equalColors);
+
+    setReadableButtonColor(document.getElementById("c"), random(clearColors));
+    setReadableButtonColor(document.getElementById("eq"), random(equalColors));
 }
 
 document.addEventListener("keydown", function (event) {
