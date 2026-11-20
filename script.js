@@ -70,7 +70,7 @@ function showSing(button) {
         const opens = (calculation.match(/\(/g) || []).length;
         const closes = (calculation.match(/\)/g) || []).length;
         const last = calculation.slice(-1);
-        if (calculation === "0" || /[+\-*/(]/.test(last)) {
+        if (calculation === "0" || /[+\-*\/(]/.test(last)) {
             calculation = calculation === "0" ? "(" : calculation + "(";
         } else if (opens > closes) {
             calculation += ")";
@@ -84,7 +84,7 @@ function showSing(button) {
     if (["+", "-", "*", "/"].includes(value)) {
         if (finished) finished = false;
         if (calculation === "Error") calculation = "0";
-        if (/[+*/.-]$/.test(calculation)) {
+        if (/[+*\/.-]$/.test(calculation)) {
             calculation = calculation.slice(0, -1) + value;
         } else {
             calculation += value;
