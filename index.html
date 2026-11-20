@@ -3,39 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="A small, playful calculator built while learning HTML, CSS and JavaScript.">
+    <meta name="theme-color" content="#bfbfbf">
+    <title>My Calculator</title>
     <link rel="stylesheet" href="style.css">
-  
 </head>
 <body>
-    <nav><button onclick="showColor(this)" id="color-btn">COLOR</button> <button onclick="showColorShell(this)" id="color-shell">BODYS</button></nav>
-   <div id="body">
-<div id="display">
-    <p id="name">SAMSUG</p>
+    <nav class="play-controls" aria-label="Appearance controls">
+        <button type="button" onclick="showColor(this)" id="color-btn">COLOR 🎨</button>
+        <button type="button" onclick="showColorShell(this)" id="color-shell">BODYS 🌈</button>
+    </nav>
 
-    <div id="disp">
+    <main id="body" aria-label="Calculator">
+        <p id="name">SAMSUG</p>
+        <section id="disp" aria-label="Calculator display">
+            <div class="line">
+                <p id="screen" aria-live="polite">0</p>
+                <button type="button" id="cancell" aria-label="Delete last character" title="Backspace"><b>⌫</b></button>
+            </div>
+            <p id="screen2" aria-live="polite"></p>
+        </section>
 
-        <div class="line">
-            <p id="screen">0</p>
+        <div id="number" aria-label="Calculator keys">
+            <button type="button" onclick="showSing(this)" value="C" id="c">C</button>
+            <button type="button" onclick="showSing(this)" value="()">()</button>
+            <button type="button" onclick="showSing(this)" value="%">%</button>
+            <button type="button" onclick="showSing(this)" value="/">/</button>
 
-            <button id="cancell">
-                <b>⌫</b>
-            </button>
+            <button type="button" onclick="showValue(this)" value="7">7</button>
+            <button type="button" onclick="showValue(this)" value="8">8</button>
+            <button type="button" onclick="showValue(this)" value="9">9</button>
+            <button type="button" onclick="showSing(this)" value="*">x</button>
+
+            <button type="button" onclick="showValue(this)" value="4">4</button>
+            <button type="button" onclick="showValue(this)" value="5">5</button>
+            <button type="button" onclick="showValue(this)" value="6">6</button>
+            <button type="button" onclick="showSing(this)" value="-">-</button>
+
+            <button type="button" onclick="showValue(this)" value="1">1</button>
+            <button type="button" onclick="showValue(this)" value="2">2</button>
+            <button type="button" onclick="showValue(this)" value="3">3</button>
+            <button type="button" onclick="showSing(this)" value="+">+</button>
+
+            <button type="button" onclick="showSing(this)" value="+/-"><sup>+</sup>/<sub>-</sub></button>
+            <button type="button" onclick="showValue(this)" value="0">0</button>
+            <button type="button" onclick="showValue(this)" value=".">.</button>
+            <button type="button" onclick="showSing(this)" value="=" id="eq">=</button>
         </div>
-
-        <p id="screen2"></p>
-
-    
-</div>
-</div><br><br>
-    <div id="number">
-        <button onclick="showSing(this)" value="C" id="c">C</button> <button onclick="showSing(this)" value="b">()</button> <button onclick="showSing(this)" value="%">%</button> <button onclick="showSing(this)">/</button><br>
-        <button onclick="showValue(this)" value="7">7</button > <button onclick="showValue(this)" value="8">8</button> <button onclick="showValue(this)" value="9">9</button> <button onclick="showSing(this)" value="*">x</button><br>
-        <button onclick="showValue(this)" value="4">4</button> <button onclick="showValue(this)" value="5">5</button> <button onclick="showValue(this)" value="6">6</button> <button onclick="showSing(this)" value="-">-</button><br>
-        <button onclick="showValue(this)" value="1">1</button> <button onclick="showValue(this)" value="2">2</button> <button onclick="showValue(this)" value="3">3</button> <button onclick="showSing(this)" value="+">+</button><br>
-        <button onclick="showSing(this)" value="+/-"><sup>+</sup>/<sub >-</sub></button> <button onclick="showValue(this)" value="0">0</button> <button onclick="showValue(this)" value=".">.</button> <button  onclick="showSing(this)" value="eq"id="eq">=</button><br>
-    </div>
-   </div>
-   <script src="script.js"></script> 
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
